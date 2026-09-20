@@ -42,6 +42,10 @@ Before editing or building an iCloud-backed project, use this readiness request:
 
 > Use iCloud Doctor to run a project-readiness preflight on this folder. Confirm that files created on my other Mac have arrived and that all required files are downloaded locally. If synchronization or materialization is incomplete, stop and tell me what is missing; do not edit, build, or generate replacement files yet.
 
+For a reusable request that does not name a specific project:
+
+> Before doing any work, use iCloud Doctor to run a readiness preflight on the workspace or project root currently associated with this task and already accessible to you. If it is iCloud-backed, verify that remote changes have arrived and that every file required for the requested work is downloaded locally. If anything is incomplete or uncertain, stop and report it; do not edit, build, delete, or create replacement files. Do not scan outside the authorized workspace.
+
 The plugin first performs a read-only check. If the evidence matches the known stalled local pipeline, it explains the proposed lightweight repair and asks before applying it.
 
 ## Platform
