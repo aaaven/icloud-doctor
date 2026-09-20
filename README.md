@@ -50,9 +50,18 @@ The plugin first performs a read-only check. If the evidence matches the known s
 
 ### Named modes
 
-- `$icloud-doctor workspace-check` — verify that the current authorized workspace is synchronized and locally ready before work begins. The natural-language phrase “workspace check” selects the same mode.
-- `$icloud-doctor sync-diagnosis` — diagnose an iCloud synchronization symptom without changing state.
-- `$icloud-doctor repair` — recheck the evidence and request confirmation before applying a matching lightweight repair.
+| Mode | Use it for |
+| --- | --- |
+| `$icloud-doctor workspace-check` | Verify that the current authorized workspace is synchronized and locally ready before work begins. |
+| `$icloud-doctor sync-check` | Diagnose stalled upload/download, disabled syncing, or broad sync symptoms without changing state. |
+| `$icloud-doctor sync-repair` | Recheck the known stalled local pipeline and request confirmation before restarting only the matching sync services. |
+| `$icloud-doctor storage-check` | Check local disk space, iCloud capacity, and storage-related transfer blocks. |
+| `$icloud-doctor folders-check` | Check Desktop & Documents settings, `— Local` symptoms, links, and competing cloud-provider ownership. |
+| `$icloud-doctor multi-mac-check` | Verify the required upload/download directions between Macs with a harmless canary. |
+| `$icloud-doctor status-check` | Explain Finder icons and check whether selected required items are actually local. |
+| `$icloud-doctor recovery-check` | Triage missing, deleted, or conflicted files while preserving recoverable versions. |
+
+Natural-language phrases such as “workspace check,” “storage check,” or “folders check” select the corresponding mode.
 
 The shortest reusable project check is:
 
@@ -80,7 +89,7 @@ Without an explicitly chained task, `workspace-check` stops after reporting the 
 
 ## Status
 
-Current public release: `0.1.2`.
+Current public release: `0.1.3`.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 {
   "name": "icloud-doctor",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Diagnose and safely repair common iCloud Drive problems on one or more Macs.",
   "author": {
     "name": "Aven Zhou"
@@ -15,9 +15,9 @@
     "capabilities": ["Interactive"],
     "defaultPrompt": [
       "Use $icloud-doctor workspace-check before working in the current workspace.",
-      "Diagnose why my iCloud Drive is not syncing.",
-      "Explain the iCloud status icons in Finder.",
-      "Check whether two Macs have conflicting iCloud files."
+      "Use $icloud-doctor sync-check to diagnose why iCloud Drive is not syncing.",
+      "Use $icloud-doctor storage-check to see whether capacity is blocking sync.",
+      "Use $icloud-doctor folders-check to inspect Desktop and Documents synchronization."
     ]
   }
 }

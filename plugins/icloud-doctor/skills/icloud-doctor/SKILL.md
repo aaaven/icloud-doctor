@@ -12,8 +12,13 @@ Explain iCloud state and restore reliable multi-Mac file synchronization with th
 Route an explicit mode token immediately after `$icloud-doctor`:
 
 - `workspace-check` (also accept the natural-language phrase `workspace check`): Check only whether the workspace or project root already associated with the current task is complete and locally usable. Apply the Project readiness preflight below. Do not diagnose unrelated iCloud areas, repair services, or begin the requested project work. Return `READY` only when the required local tree is verified; otherwise return `NOT READY` with the blocking evidence and safe next action.
-- `sync-diagnosis`: Diagnose an iCloud Drive synchronization symptom without changing state.
-- `repair`: Recheck the evidence, explain the matching repair, and obtain authorization immediately before changing process state.
+- `sync-check`: Read-only diagnosis of stalled upload, stalled download, `Syncing has been disabled`, or broad iCloud Drive synchronization symptoms. Identify scope and direction; do not repair.
+- `sync-repair`: Recheck the stalled local pipeline evidence. Only when it matches, explain and request authorization to restart `bird`, `fileproviderd`, and Finder. Verify afterward; do not apply this repair to storage, deletion, conflict, authentication, or service-outage cases.
+- `storage-check`: Check local disk headroom, reported iCloud capacity, Optimize Mac Storage implications, and whether space is blocking transfers. Do not delete content or change the storage plan.
+- `folders-check`: Check Desktop & Documents configuration, `— Local` symptoms, folder links, and possible competing cloud-provider ownership. Do not toggle providers or merge folders.
+- `multi-mac-check`: Check whether changes travel in the required direction between Macs using a harmless canary chosen with the user. Do not claim success until the required directions are confirmed.
+- `status-check`: Explain Finder iCloud status icons and determine whether selected required items are local, cloud-only, waiting, ineligible, or transferring. Do not infer descendant completeness from a parent icon.
+- `recovery-check`: Triage a missing, deleted, or conflicted file. Preserve versions, stop risky writes, and route to Trash, Recently Deleted, Data Recovery, or manual conflict review as evidence requires.
 
 If no mode is supplied, infer the smallest matching workflow from the user's request. A named mode narrows scope; it does not expand file access or authorize mutation.
 
@@ -24,6 +29,8 @@ Accept any of these equivalent requests:
 - `$icloud-doctor workspace-check`
 - `Use iCloud Doctor to run workspace check.`
 - `先用 iCloud Doctor 做 workspace check。`
+
+Other modes use the same pattern, for example `$icloud-doctor storage-check` or `用 iCloud Doctor 做 folders check。`
 
 For a gated downstream task, the user may say: `$icloud-doctor workspace-check; only if READY, continue with the following task: ...`. In that form, run the downstream task only after returning `READY`. Without an explicit chained task, stop after the check.
 
