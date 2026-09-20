@@ -38,6 +38,10 @@ After installation, start a new ChatGPT or Codex task and say:
 
 > Run iCloud Doctor and diagnose why iCloud Drive is not syncing.
 
+Before editing or building an iCloud-backed project, use this readiness request:
+
+> Use iCloud Doctor to run a project-readiness preflight on this folder. Confirm that files created on my other Mac have arrived and that all required files are downloaded locally. If synchronization or materialization is incomplete, stop and tell me what is missing; do not edit, build, or generate replacement files yet.
+
 The plugin first performs a read-only check. If the evidence matches the known stalled local pipeline, it explains the proposed lightweight repair and asks before applying it.
 
 ## Platform
