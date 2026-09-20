@@ -7,6 +7,31 @@ description: Diagnose macOS iCloud Drive status, multi-Mac sync failures, Deskto
 
 Explain iCloud state and restore reliable multi-Mac file synchronization with the least disruptive action supported by the evidence.
 
+## Named modes
+
+Route an explicit mode token immediately after `$icloud-doctor`:
+
+- `workspace-check` (also accept the natural-language phrase `workspace check`): Check only whether the workspace or project root already associated with the current task is complete and locally usable. Apply the Project readiness preflight below. Do not diagnose unrelated iCloud areas, repair services, or begin the requested project work. Return `READY` only when the required local tree is verified; otherwise return `NOT READY` with the blocking evidence and safe next action.
+- `sync-diagnosis`: Diagnose an iCloud Drive synchronization symptom without changing state.
+- `repair`: Recheck the evidence, explain the matching repair, and obtain authorization immediately before changing process state.
+
+If no mode is supplied, infer the smallest matching workflow from the user's request. A named mode narrows scope; it does not expand file access or authorize mutation.
+
+### Invoke workspace-check
+
+Accept any of these equivalent requests:
+
+- `$icloud-doctor workspace-check`
+- `Use iCloud Doctor to run workspace check.`
+- `先用 iCloud Doctor 做 workspace check。`
+
+For a gated downstream task, the user may say: `$icloud-doctor workspace-check; only if READY, continue with the following task: ...`. In that form, run the downstream task only after returning `READY`. Without an explicit chained task, stop after the check.
+
+Keep the result compact:
+
+- `READY`: identify the checked workspace and state that required content is locally available.
+- `NOT READY`: identify the blocking cloud-only, transferring, absent, or unverifiable content and the smallest safe next action.
+
 ## Safety boundaries
 
 - Diagnose before changing state. A status icon alone is not proof of failure.
@@ -45,6 +70,8 @@ Before editing, building, indexing, or batch-processing a project stored in iClo
 - Inspect the affected descendants' iCloud status. If any required item is In iCloud, transferring, waiting, or absent while known to exist remotely, stop before making project changes.
 - Ask the user to use Download Now on the highest safe project folder, keep the Mac online and powered, and wait for transfer progress to finish. Do not force-download a large tree without authorization.
 - Recheck the expected files and required upload/download direction before declaring the project ready. Only then proceed with edits, builds, or automation that assumes a complete local tree.
+
+For `workspace-check`, use the workspace or project root already attached to the current task. Do not require the user to name it again, and do not scan outside the authorized workspace. If no workspace is associated or its path cannot be established, return `NOT READY` and request the smallest missing context.
 
 ## Decision rules
 

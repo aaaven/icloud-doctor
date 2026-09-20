@@ -48,6 +48,30 @@ For a reusable request that does not name a specific project:
 
 The plugin first performs a read-only check. If the evidence matches the known stalled local pipeline, it explains the proposed lightweight repair and asks before applying it.
 
+### Named modes
+
+- `$icloud-doctor workspace-check` — verify that the current authorized workspace is synchronized and locally ready before work begins. The natural-language phrase “workspace check” selects the same mode.
+- `$icloud-doctor sync-diagnosis` — diagnose an iCloud synchronization symptom without changing state.
+- `$icloud-doctor repair` — recheck the evidence and request confirmation before applying a matching lightweight repair.
+
+The shortest reusable project check is:
+
+> `$icloud-doctor workspace-check`
+
+It returns `READY` or `NOT READY` with the blocking evidence. A named mode narrows the workflow; it does not grant access outside the workspace or authorize changes.
+
+Equivalent natural-language requests are:
+
+> Use iCloud Doctor to run workspace check.
+
+> 先用 iCloud Doctor 做 workspace check。
+
+To use the check as a gate before another task:
+
+> `$icloud-doctor workspace-check`; only if `READY`, continue with the following task: …
+
+Without an explicitly chained task, `workspace-check` stops after reporting the result.
+
 ## Platform
 
 - macOS only for local diagnostics and repair.
@@ -56,7 +80,7 @@ The plugin first performs a read-only check. If the evidence matches the known s
 
 ## Status
 
-Current public release: `0.1.1`.
+Current public release: `0.1.2`.
 
 ## Documentation
 
