@@ -1,6 +1,6 @@
 {
   "name": "icloud-doctor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Diagnose and safely repair common iCloud Drive problems on one or more Macs.",
   "author": {
     "name": "Aven Zhou"
@@ -20,4 +20,3 @@
     ]
   }
 }
-

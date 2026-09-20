@@ -48,7 +48,7 @@ The plugin first performs a read-only check. If the evidence matches the known s
 
 ## Status
 
-Initial public release candidate: `0.1.0`.
+Current public release: `0.1.1`.
 
 ## Documentation
 

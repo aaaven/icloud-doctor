@@ -35,6 +35,26 @@ Sources:
 - https://support.apple.com/118446
 - https://support.apple.com/guide/mac-help/mchlc994344b/mac
 
+## Parent is Keep Downloaded but descendants are not locally ready
+
+Evidence: the top-level project folder has the Keep Downloaded icon, but a required child folder appears empty, required files are cloud-only, or opening a child folder is what starts its download.
+
+Interpretation: do not use the parent icon as a recursive completion certificate. Keep Downloaded is the retention intent for the selected item, while enumeration and first download of a large descendant tree can still be asynchronous. Accessing a child may cause File Provider to prioritize it.
+
+Action:
+
+1. Establish at least one expected file or small canary known to exist on the other Mac.
+2. Inspect required descendants rather than relying on the parent icon.
+3. If required content is cloud-only, transferring, or missing locally while known to exist remotely, pause builds, edits, indexing, and batch jobs.
+4. With user authorization, use Download Now on the highest safe project folder and wait for transfer progress to finish.
+5. Recheck the expected files before declaring the local project ready.
+
+Do not interpret an incomplete local view as proof that remote files were deleted, and do not generate replacement files over the expected paths.
+
+Sources:
+- https://support.apple.com/guide/mac-help/mchl1a02d711/mac
+- https://support.apple.com/guide/mac-help/mchlc994344b/mac
+
 ## Ineligible item
 
 Apple says this commonly occurs when an individual file or folder exceeds the 50 GB iCloud Drive limit. Desktop/Documents also does not upload iMovie, Photos, or Aperture library files.

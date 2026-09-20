@@ -36,6 +36,16 @@ Explain iCloud state and restore reliable multi-Mac file synchronization with th
 6. After authorization, run `scripts/icloud_doctor.sh --repair`.
 7. Verify with a harmless cross-Mac canary file or rename. Do not claim end-to-end synchronization is restored until the user confirms both upload and download behavior needed for the workflow.
 
+## Project readiness preflight
+
+Before editing, building, indexing, or batch-processing a project stored in iCloud Drive, verify that the working tree is materially present on the current Mac.
+
+- Do not treat a parent folder's Keep Downloaded icon as proof that every descendant has finished downloading. It expresses a retention policy; descendants may still be queued, cloud-only, or not yet enumerated locally.
+- Identify one or more expected files that are known to exist from the other Mac, a repository manifest, or the user's description. A locally missing expected file may indicate incomplete synchronization rather than deletion.
+- Inspect the affected descendants' iCloud status. If any required item is In iCloud, transferring, waiting, or absent while known to exist remotely, stop before making project changes.
+- Ask the user to use Download Now on the highest safe project folder, keep the Mac online and powered, and wait for transfer progress to finish. Do not force-download a large tree without authorization.
+- Recheck the expected files and required upload/download direction before declaring the project ready. Only then proceed with edits, builds, or automation that assumes a complete local tree.
+
 ## Decision rules
 
 - If Desktop & Documents or iCloud Drive is actually disabled, report a configuration problem; do not toggle it automatically because local and cloud folders may diverge.
@@ -44,6 +54,7 @@ Explain iCloud state and restore reliable multi-Mac file synchronization with th
 - If a conflict dialog appears, preserve every potentially useful version first; never choose a winner for the user.
 - If deletion propagated across devices, stop writes and route to Recently Deleted or iCloud Data Recovery. Do not run the service restart as a recovery method.
 - If the lightweight repair succeeds at process level but the cross-Mac test still fails, collect fresh diagnostics and propose the next non-destructive step. Do not repeat the repair indefinitely.
+- If an operation depends on files created on another Mac, treat local materialization as a prerequisite. Do not let a build or file operation convert an incomplete local view into misleading "missing file" errors or replacement output.
 - Do not run database repair, delete FileProvider metadata, or sign out as an automatic escalation.
 - If the symptom differs materially from the known pattern, diagnose it as a new case rather than forcing this repair.
 
