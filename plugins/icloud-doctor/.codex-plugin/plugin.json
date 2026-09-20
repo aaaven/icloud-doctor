@@ -1,0 +1,23 @@
+{
+  "name": "icloud-doctor",
+  "version": "0.1.0",
+  "description": "Diagnose and safely repair common iCloud Drive problems on one or more Macs.",
+  "author": {
+    "name": "Aven Zhou"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "iCloud Doctor",
+    "shortDescription": "Diagnose multi-Mac iCloud Drive sync and recovery issues.",
+    "longDescription": "Explains Finder iCloud status, diagnoses stalled uploads and downloads, multi-Mac conflicts, storage limits, accidental deletion, Desktop and Documents problems, and competing cloud providers, then offers only evidence-matched safe repairs.",
+    "developerName": "Aven Zhou",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "defaultPrompt": [
+      "Diagnose why my iCloud Drive is not syncing.",
+      "Explain the iCloud status icons in Finder.",
+      "Check whether two Macs have conflicting iCloud files."
+    ]
+  }
+}
+

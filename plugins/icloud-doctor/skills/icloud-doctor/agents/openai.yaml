@@ -1,0 +1,5 @@
+interface:
+  display_name: "iCloud Doctor"
+  short_description: "Diagnose multi-Mac iCloud sync and recovery issues"
+  default_prompt: "Use $icloud-doctor to diagnose this iCloud Drive issue, explain the evidence, and offer only the matching safe repair."
+
